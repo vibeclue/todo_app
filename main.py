@@ -2,9 +2,9 @@ def get_todos():
     with open('todos.txt', 'r', encoding='UTF-8') as f:
         return f.readlines()
 
-def update_todo_list(todos_list: list):
+def update_todo_list(todo_list: list):
     with open('todos.txt', 'w', encoding='UTF-8') as file:
-        file.writelines(todos_list)
+        file.writelines(todo_list)
 
 print("Hey! It's your todo list!")
 print()
