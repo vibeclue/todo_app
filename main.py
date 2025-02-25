@@ -1,9 +1,11 @@
-def get_todos():
-    with open('todos.txt', 'r', encoding='UTF-8') as f:
-        return f.readlines()
+def get_todos(filepath: str='todos.txt')-> list:
+    """ Read a text file and return the list of to-do items """
+    with open(filepath, 'r', encoding='UTF-8') as file:
+        return file.readlines()
 
-def update_todo_list(todo_list: list):
-    with open('todos.txt', 'w', encoding='UTF-8') as file:
+def update_todo_list(todo_list: list, filepath: str='todos.txt') -> None:
+    """ Write the to-do items list to a text file """
+    with open(filepath, 'w', encoding='UTF-8') as file:
         file.writelines(todo_list)
 
 print("Hey! It's your todo list!")
