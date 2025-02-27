@@ -1,14 +1,9 @@
-def get_todos(filepath: str='todos.txt')-> list:
-    """ Read a text file and return the list of to-do items """
-    with open(filepath, 'r', encoding='UTF-8') as file:
-        return file.readlines()
+import time
+from functions import update_todo_list, get_todos
 
-def update_todo_list(todo_list: list, filepath: str='todos.txt') -> None:
-    """ Write the to-do items list to a text file """
-    with open(filepath, 'w', encoding='UTF-8') as file:
-        file.writelines(todo_list)
 
 print("Hey! It's your todo list!")
+print(time.strftime("Today is %d.%m.%Y %H:%M"))
 print()
 
 
