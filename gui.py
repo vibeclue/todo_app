@@ -4,6 +4,8 @@ import functions
 import FreeSimpleGUI as sg
 import time
 
+sg.theme('Black')
+
 
 current_time = sg.Text('', key='current_time')
 label = sg.Text("Type in a to-do:")
@@ -13,7 +15,7 @@ add_button = sg.Button("Add", size=7)
 list_box = sg.Listbox(values=functions.get_todos(), size=(57, 10), key='todos', enable_events=True)
 edit_button = sg.Button('Edit', size=7)
 
-complete_button = sg.Button('Complete', size=7)
+complete_button = sg.Button('Complete', size=9)
 exit_button = sg.Button('Exit', size=7)
 
 window = sg.Window('TODO LIST',
