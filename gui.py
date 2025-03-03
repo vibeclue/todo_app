@@ -3,9 +3,14 @@ from ast import Index
 import functions
 import FreeSimpleGUI as sg
 import time
+import os
+
+
+if not os.path.exists("todos.txt"):  # create a new file when it not exist
+    with open('todos.txt', 'w', encoding='UTF-8'):
+        pass
 
 sg.theme('Black')
-
 
 current_time = sg.Text('', key='current_time')
 label = sg.Text("Type in a to-do:")
@@ -27,6 +32,10 @@ window = sg.Window('TODO LIST',
 
 while True:
     event, values = window.read(timeout=500)
+
+    if event == sg.WINDOW_CLOSED or event == 'Exit':
+        break
+
     window['current_time'].update(value=time.strftime("%d.%m.%Y %H:%M"))
     match event:
         case 'add':
@@ -34,6 +43,7 @@ while True:
             todos.append(values['todo'].capitalize() + '\n')
             functions.update_todo_list(todos)
 
+            window['todo'].update(value='')  # clear input field
             window['todos'].update(values=todos)  # update listbox
 
         case 'edit':
@@ -66,12 +76,6 @@ while True:
             except IndexError:
                 sg.popup("Please, select an item first.", title='Warning!', font=('Helvetica', 12),
                          button_justification='right')
-
-        case 'exit':
-            break
-
-        case sg.WINDOW_CLOSED:
-            break
 
 window.close()
 
