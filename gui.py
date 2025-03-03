@@ -31,11 +31,11 @@ while True:
 
         case 'Edit':
             todo_to_edit = values['todos'][0]
-            new_todo = values['todo']+ '\n'
+            new_todo = values['todo']
 
             todos = functions.get_todos()
             index = todos.index(todo_to_edit)
-            todos[index] = new_todo
+            todos[index] = new_todo + '\n'
             functions.update_todo_list(todos)
 
             window['todos'].update(values=todos)  # update listbox
@@ -45,10 +45,11 @@ while True:
 
         case 'Complete':
             todos = functions.get_todos()
-            index = todos.index(values['todos'][0])
-            del todos[index]
+            todo_to_complete = values['todos'][0]
+            todos.remove(todo_to_complete)
             functions.update_todo_list(todos)
 
+            window['todo'].update(value='')       # clear input field
             window['todos'].update(values=todos)  # update listbox
 
         case 'Exit':
@@ -56,6 +57,7 @@ while True:
 
         case sg.WINDOW_CLOSED:
             break
+
 window.close()
 
 

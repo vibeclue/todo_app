@@ -1,5 +1,3 @@
-выа
-add something
-buy a new toy
+new 
 Buy grocities
 Make new app todo
