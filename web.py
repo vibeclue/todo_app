@@ -16,7 +16,8 @@ st.subheader("Today you need:")
 todos: list = functions.get_todos()
 for index, todo in enumerate(todos):
     checked_todo = st.checkbox(todo, key=todo)
-    if checked_todo:    # delete todo from the list
+    # delete todo from the list
+    if checked_todo:
         todos.pop(index)
         functions.update_todo_list(todos)
         del st.session_state[todo]
