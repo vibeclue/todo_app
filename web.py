@@ -7,20 +7,23 @@ def add_todo():
     if new_todo:
         todos.append(new_todo + '\n')
         functions.update_todo_list(todos)
+        st.session_state["new_todo"] = ""
 
-
-st.title("Todo app")
-st.subheader("List of todo:")
+st.title("Yours todo list")
+st.subheader("Today you need:")
 
 # todos list
 todos: list = functions.get_todos()
-for todo in todos:
-    st.checkbox(todo)
+for index, todo in enumerate(todos):
+    checked_todo = st.checkbox(todo, key=todo)
+    if checked_todo:    # delete todo from the list
+        todos.pop(index)
+        functions.update_todo_list(todos)
+        del st.session_state[todo]
+        st.rerun()
 
 st.text_input(label="Enter a todo: ",
               label_visibility='hidden',
               placeholder="Enter a new todo...",
               on_change=add_todo,
               key="new_todo")
-
-
